@@ -33,7 +33,7 @@ cbt -project "project-id" read hotels
 ```shell
 BIGTABLE_EMULATOR_HOST=localhost:8086
 cd write
-go writeRecords.go
+go run writeRecords.go
 ```
 
 ## Ensure data shows up in the table
@@ -46,5 +46,5 @@ cbt -project "project-id" read hotels
 ```shell
 BIGTABLE_EMULATOR_HOST=localhost:8086
 cd read
-go readRecords.go -zip or-01
+go run readRecords.go -zip or-01
 ```
