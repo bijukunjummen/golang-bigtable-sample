@@ -42,7 +42,7 @@ func findHotels(table *bigtable.Table, ctx context.Context, zip string) ([]types
 		})
 
 	if err != nil {
-		return nil, fmt.Errorf("client.Close(): %v", err)
+		return nil, fmt.Errorf("error in searching by zip code: %v", err)
 	}
 	holder := make(map[string]types.Hotel)
 	err = table.ReadRows(ctx, bigtable.RowList(keys), func(row bigtable.Row) bool {
@@ -51,7 +51,7 @@ func findHotels(table *bigtable.Table, ctx context.Context, zip string) ([]types
 		return true
 	})
 	if err != nil {
-		return nil, fmt.Errorf("client.Close(): %v", err)
+		return nil, fmt.Errorf("error in retrieving by keys: %v", err)
 	}
 	for _, k := range keys {
 		hotels = append(hotels, holder[k])
